@@ -8,4 +8,39 @@ public class Quarto {
     private String numeroQuarto;
     private String tipoCama;
     private Boolean aceitaAnimais;
+
+    public Quarto(Integer codQuarto, String numeroQuarto, String tipoCama, Boolean aceitaAnimais) {
+        this.codQuarto = codQuarto;
+        this.numeroQuarto = numeroQuarto;
+        this.tipoCama = tipoCama;
+        this.aceitaAnimais = aceitaAnimais;
+    }
+
+    public Integer getCodQuarto() {
+        return codQuarto;
+    }
+
+    public String getNumeroQuarto() {
+        return numeroQuarto;
+    }
+
+    public void setNumeroQuarto(String numeroQuarto) {
+        this.numeroQuarto = numeroQuarto;
+    }
+
+    public String getTipoCama() {
+        return tipoCama;
+    }
+
+    public void setTipoCama(String tipoCama) {
+        this.tipoCama = tipoCama;
+    }
+
+    public Boolean getAceitaAnimais() {
+        return aceitaAnimais;
+    }
+
+    public void setAceitaAnimais(Boolean aceitaAnimais) {
+        this.aceitaAnimais = aceitaAnimais;
+    }
 }
