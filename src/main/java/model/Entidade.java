@@ -1,4 +1,4 @@
-package com.desafio.desafiojava.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +8,17 @@ public class Entidade {
     private String nome;
     private String cnpj;
     private String tipoEntidade;
-    private List<Quarto> quartosEntidade = new ArrayList<>();
+    private List<Quarto> quartos = new ArrayList<>();
 
     public Entidade() {
     }
 
-    public Entidade(Integer codEntidade, String nome, String cnpj, String tipoEntidade, List<Quarto> quartosEntidade) {
+    public Entidade(Integer codEntidade, String nome, String cnpj, String tipoEntidade, List<Quarto> quartos) {
         this.codEntidade = codEntidade;
         this.nome = nome;
         this.cnpj = cnpj;
         this.tipoEntidade = tipoEntidade;
-        this.quartosEntidade = quartosEntidade;
+        this.quartos = quartos;
     }
 
     public Integer getCodEntidade() {
@@ -50,10 +50,10 @@ public class Entidade {
     }
 
     public List<Quarto> getQuartosEntidade() {
-        return quartosEntidade;
+        return quartos;
     }
 
     public void setQuartosEntidade(List<Quarto> quartosEntidade) {
-        this.quartosEntidade = quartosEntidade;
+        this.quartos = quartosEntidade;
     }
 }

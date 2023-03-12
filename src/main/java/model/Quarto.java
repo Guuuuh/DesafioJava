@@ -1,4 +1,4 @@
-package com.desafio.desafiojava.model;
+package model;
 //Para uma pessoa virar um hóspede ela precisa reservar um quarto,
 // então para instanciar um objeto hospede precisa passar uma pessoa criando uma reserva.
 //Talvez passar um quarto também. Preciso usar a função criarReserva() no construtor do hóspede,
@@ -8,6 +8,8 @@ public class Quarto {
     private String numeroQuarto;
     private String tipoCama;
     private Boolean aceitaAnimais;
+    private Boolean reservado;
+    private Entidade entidade;
 
     public Quarto(Integer codQuarto, String numeroQuarto, String tipoCama, Boolean aceitaAnimais) {
         this.codQuarto = codQuarto;
@@ -42,5 +44,13 @@ public class Quarto {
 
     public void setAceitaAnimais(Boolean aceitaAnimais) {
         this.aceitaAnimais = aceitaAnimais;
+    }
+
+    public Boolean getReservado() {
+        return reservado;
+    }
+
+    public void setReservado(Boolean reservado) {
+        this.reservado = reservado;
     }
 }

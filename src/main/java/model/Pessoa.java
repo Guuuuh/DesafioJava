@@ -1,4 +1,4 @@
-package com.desafio.desafiojava.model;
+package model;
 
 public class Pessoa {
     private Integer codPessoa;
@@ -32,5 +32,14 @@ public class Pessoa {
 
     public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "codPessoa=" + codPessoa +
+                ", nome='" + nome + '\'' +
+                ", dataDeNascimento='" + dataDeNascimento + '\'' +
+                '}';
     }
 }
