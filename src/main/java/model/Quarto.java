@@ -9,6 +9,7 @@ public class Quarto {
     private String tipoCama;
     private Boolean aceitaAnimais;
     private Boolean reservado = false;
+    private Hospede hospede;
     private String nomeHospede;
     private Boolean checkin;
     private Entidade entidade;
@@ -56,6 +57,16 @@ public class Quarto {
         this.reservado = reservado;
     }
 
+    public Hospede getHospede() {
+        return hospede;
+    }
+
+    public void setHospede(Hospede hospede) {
+        if (this.reservado) {
+            this.hospede = hospede;
+        }
+    }
+
     public String getNomeHospede() {
         return nomeHospede;
     }
@@ -85,4 +96,5 @@ public class Quarto {
             this.nomeHospede = hospede.getPessoa().getNome();
         }
     }
+
 }
