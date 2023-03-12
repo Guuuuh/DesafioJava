@@ -53,4 +53,16 @@ public class Quarto {
     public void setReservado(Boolean reservado) {
         this.reservado = reservado;
     }
+
+    @Override
+    public String toString() {
+        return "Quarto{" +
+                "codQuarto=" + codQuarto +
+                ", numeroQuarto='" + numeroQuarto + '\'' +
+                ", tipoCama='" + tipoCama + '\'' +
+                ", aceitaAnimais=" + aceitaAnimais +
+                ", reservado=" + reservado +
+                ", entidade=" + entidade +
+                '}';
+    }
 }

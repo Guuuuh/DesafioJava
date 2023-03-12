@@ -1,24 +1,22 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Entidade {
     private Integer codEntidade;
     private String nome;
     private String cnpj;
     private String tipoEntidade;
-    private List<Quarto> quartos = new ArrayList<>();
+    private ArrayList<Quarto> quartos = new ArrayList<>();
 
     public Entidade() {
     }
 
-    public Entidade(Integer codEntidade, String nome, String cnpj, String tipoEntidade, List<Quarto> quartos) {
+    public Entidade(Integer codEntidade, String nome, String cnpj, String tipoEntidade) {
         this.codEntidade = codEntidade;
         this.nome = nome;
         this.cnpj = cnpj;
         this.tipoEntidade = tipoEntidade;
-        this.quartos = quartos;
     }
 
     public Integer getCodEntidade() {
@@ -49,11 +47,23 @@ public class Entidade {
         this.tipoEntidade = tipoEntidade;
     }
 
-    public List<Quarto> getQuartosEntidade() {
+    public ArrayList<Quarto> getQuartos() {
         return quartos;
     }
 
-    public void setQuartosEntidade(List<Quarto> quartosEntidade) {
-        this.quartos = quartosEntidade;
+    public void setQuartos(ArrayList<Quarto> quartos) {
+        this.quartos = quartos;
     }
+
+    @Override
+    public String toString() {
+        return "Entidade{" +
+                "codEntidade=" + codEntidade +
+                ", nome='" + nome + '\'' +
+                ", cnpj='" + cnpj + '\'' +
+                ", tipoEntidade='" + tipoEntidade + '\'' +
+                ", quartos=" + quartos.toString() +
+                '}';
+    }
+
 }
