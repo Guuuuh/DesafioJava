@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class Hospede extends Pessoa {
@@ -76,35 +78,49 @@ public class Hospede extends Pessoa {
         System.out.println("Este é o numero do seu quarto: " + hospede.getNumeroDoQuarto());
     }
 
-    public void criarReserva(Hospede hospede,Quarto quarto, String dataDaReserva) {
-        if (!quarto.getReservado()) {
-            quarto.setReservado(true);
-            this.numeroDoQuarto = (quarto.getNumeroQuarto());
-            hospede.setDataDaReserva(dataDaReserva);
-            quarto.setHospede(hospede);
-            quarto.setNomeHospede(hospede);
-            hospede.setPossuiReserva(true);
-            imprimeInformacoesHospede(hospede);
-        } else {
-            System.out.println("Este quarto já está resevado!");
+    public void criarReserva(Hospede hospede, Quarto quartoAReservar, String dataDaReserva) throws Exception {
+        if (quartoAReservar.getReservado()) {
+            throw new Exception("Este quarto já está reservado!");
         }
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        format.setLenient(false);
+        try {
+            format.parse(dataDaReserva);
+        } catch (ParseException e) {
+            throw new Exception("A data da reserva está inválida!");
+        }
+
+        quartoAReservar.setReservado(true);
+        this.numeroDoQuarto = quartoAReservar.getNumeroQuarto();
+        hospede.setDataDaReserva(dataDaReserva);
+        quartoAReservar.setHospede(hospede);
+        quartoAReservar.setNomeHospede(hospede);
+        hospede.setPossuiReserva(true);
+        imprimeInformacoesHospede(hospede);
     }
 
-    public void fazerCheckin(Hospede hospede, Quarto quarto){
-        if (hospede.possuiReserva) {
-            if (quarto.getReservado()) {
-                if (Objects.equals(hospede.getCodHospede(), quarto.getHospede().getCodHospede())) {
-                    System.out.println("Olá " + hospede.getPessoa().getNome() + " foi realizado o seu check-in no quarto: " + hospede.getNumeroDoQuarto());
-                    quarto.setCheckin(true);
-                } else {
-                    System.out.println("Check-in para o quarto errado, efetue novamente no quarto correto!");
-                }
-            } else {
-                System.out.println("Check-in para o quarto errado, este quarto não está reservado");
-            }
-        } else {
-            System.out.println("Este hospede não possui reservas");
+
+    public void fazerCheckin(Hospede hospede, Quarto quarto) throws Exception {
+        if (!hospede.possuiReserva) {
+            throw new Exception("Este hospede não possui reservas");
         }
+
+        if (!quarto.getReservado()) {
+            throw new Exception("Check-in para o quarto errado, este quarto não está reservado");
+        }
+
+        if (!Objects.equals(hospede.getCodHospede(), quarto.getHospede().getCodHospede())) {
+            throw new Exception("Check-in para o quarto errado, efetue novamente no quarto correto!");
+        }
+
+        System.out.println("Olá " + hospede.getPessoa().getNome() + " foi realizado o seu check-in no quarto: " + hospede.getNumeroDoQuarto());
+        quarto.setCheckin(true);
+    }
+
+
+    public void fazerCheckout(Hospede hospede, Quarto quarto) {
+
     }
 
 }
