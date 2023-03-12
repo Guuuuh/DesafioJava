@@ -64,7 +64,7 @@ public class Hospede extends Pessoa {
     }
 
     public void imprimeInformacoesHospede(Hospede hospede) {
-        System.out.println(hospede.getNome());
+        System.out.println(hospede.getPessoa().getNome());
         System.out.println(hospede.getDataDaReserva());
         System.out.println(hospede.getNumeroDoQuarto());
     }
@@ -74,6 +74,7 @@ public class Hospede extends Pessoa {
             quarto.setReservado(true);
             setNumeroDoQuarto(quarto.getNumeroQuarto());
             hospede.setDataDaReserva(dataDaReserva);
+            quarto.setNomeHospede(hospede);
             imprimeInformacoesHospede(hospede);
         } else {
             System.out.println("Este quarto já está resevado!");

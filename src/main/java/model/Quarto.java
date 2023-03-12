@@ -8,7 +8,9 @@ public class Quarto {
     private String numeroQuarto;
     private String tipoCama;
     private Boolean aceitaAnimais;
-    private Boolean reservado;
+    private Boolean reservado = false;
+    private String nomeHospede;
+    private Boolean checkin;
     private Entidade entidade;
 
     public Quarto(Integer codQuarto, String numeroQuarto, String tipoCama, Boolean aceitaAnimais) {
@@ -54,6 +56,18 @@ public class Quarto {
         this.reservado = reservado;
     }
 
+    public String getNomeHospede() {
+        return nomeHospede;
+    }
+
+    public Boolean getCheckin() {
+        return checkin;
+    }
+
+    public void setCheckin(Boolean checkin) {
+        this.checkin = checkin;
+    }
+
     @Override
     public String toString() {
         return "Quarto{" +
@@ -62,7 +76,13 @@ public class Quarto {
                 ", tipoCama='" + tipoCama + '\'' +
                 ", aceitaAnimais=" + aceitaAnimais +
                 ", reservado=" + reservado +
-                ", entidade=" + entidade +
+                ", nomeHospede='" + nomeHospede + '\'' +
                 '}';
+    }
+
+    public void setNomeHospede(Hospede hospede){
+        if (this.reservado) {
+            this.nomeHospede = hospede.getPessoa().getNome();
+        }
     }
 }
