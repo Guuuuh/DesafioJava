@@ -1,4 +1,5 @@
 package model;
+
 //Para uma pessoa virar um hóspede ela precisa reservar um quarto,
 // então para instanciar um objeto hospede precisa passar uma pessoa criando uma reserva.
 //Talvez passar um quarto também. Preciso usar a função criarReserva() no construtor do hóspede,
@@ -11,8 +12,7 @@ public class Quarto {
     private Boolean reservado = false;
     private Hospede hospede;
     private String nomeHospede;
-    private Boolean checkin;
-    private Entidade entidade;
+    private Boolean checkin = false;
 
     public Quarto(Integer codQuarto, String numeroQuarto, String tipoCama, Boolean aceitaAnimais) {
         this.codQuarto = codQuarto;
@@ -79,6 +79,7 @@ public class Quarto {
         this.checkin = checkin;
     }
 
+
     @Override
     public String toString() {
         return "Quarto{" +
@@ -88,13 +89,18 @@ public class Quarto {
                 ", aceitaAnimais=" + aceitaAnimais +
                 ", reservado=" + reservado +
                 ", nomeHospede='" + nomeHospede + '\'' +
+                ", checkin=" + checkin +
                 '}';
     }
 
-    public void setNomeHospede(Hospede hospede){
+
+    public void setNomeHospede(Hospede hospede) {
         if (this.reservado) {
             this.nomeHospede = hospede.getPessoa().getNome();
         }
+    }
+    public void resetNomeHospede(Quarto quarto) {
+         quarto.nomeHospede = null;
     }
 
 }

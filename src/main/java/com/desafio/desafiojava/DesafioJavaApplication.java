@@ -26,7 +26,12 @@ public class DesafioJavaApplication {
         hospede1.criarReserva(hospede1, quarto1, "12/03/2023");
         System.out.println(quarto1.toString());
 
-        //hospede1.fazerCheckin(hospede1, quarto1);
+        hospede1.fazerCheckin(hospede1, quarto1);
+        System.out.println(quarto1.toString());
+
+        hospede1.fazerCheckout(hospede1, quarto1);
+        System.out.println(quarto1.toString());
+
 
     }
 
