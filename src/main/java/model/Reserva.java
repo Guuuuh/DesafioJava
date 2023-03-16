@@ -1,7 +1,8 @@
 package model;
 
 public class Reserva {
-    private int codReserva;
+
+    private Integer codReserva;
     private Hospede hospede;
     private Quarto quarto;
 
@@ -11,7 +12,6 @@ public class Reserva {
     public int getCodReserva() {
         return codReserva;
     }
-
 
     public Hospede getHospede() {
         return hospede;

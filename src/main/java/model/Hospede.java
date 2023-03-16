@@ -8,30 +8,34 @@ import java.util.Objects;
 
 public class Hospede extends Pessoa {
     private Integer codHospede;
-    private String dataDaReserva;
+    private LocalDate dataDaReserva;
     private Boolean utilizaraGaragem;
     private String numeroDoQuarto;
     private Boolean possuiReserva = false;
-    private Pessoa pessoa;
 
-    public Hospede() {
-    }
 
-    public Hospede(Pessoa pessoa, Integer codHospede, Boolean utilizaraGaragem) {
-        this.pessoa = pessoa;
+    public Hospede(Integer codPessoa, String nome, LocalDate dataDeNascimento, Integer codHospede, LocalDate dataDaReserva, Boolean utilizaraGaragem, String numeroDoQuarto, Boolean possuiReserva) {
+        super(codPessoa, nome, dataDeNascimento);
         this.codHospede = codHospede;
+        this.dataDaReserva = dataDaReserva;
         this.utilizaraGaragem = utilizaraGaragem;
+        this.numeroDoQuarto = numeroDoQuarto;
+        this.possuiReserva = possuiReserva;
     }
 
     public Integer getCodHospede() {
         return codHospede;
     }
 
-    public String getDataDaReserva() {
+    public void setCodHospede(Integer codHospede) {
+        this.codHospede = codHospede;
+    }
+
+    public LocalDate getDataDaReserva() {
         return dataDaReserva;
     }
 
-    public void setDataDaReserva(String dataDaReserva) {
+    public void setDataDaReserva(LocalDate dataDaReserva) {
         this.dataDaReserva = dataDaReserva;
     }
 
@@ -47,12 +51,8 @@ public class Hospede extends Pessoa {
         return numeroDoQuarto;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setNumeroDoQuarto(String numeroDoQuarto) {
+        this.numeroDoQuarto = numeroDoQuarto;
     }
 
     public Boolean getPossuiReserva() {
@@ -63,14 +63,9 @@ public class Hospede extends Pessoa {
         this.possuiReserva = possuiReserva;
     }
 
-    public void setNumeroDoQuarto(String numeroDoQuarto) {
-        this.numeroDoQuarto = numeroDoQuarto;
-    }
-
     @Override
     public String toString() {
         return "Hospede = " +
-                ", Pessoa=" + pessoa.toString() +
                 "codHospede=" + codHospede +
                 ", dataDaReserva='" + dataDaReserva + '\'' +
                 ", utilizaraGaragem=" + utilizaraGaragem +
@@ -81,15 +76,15 @@ public class Hospede extends Pessoa {
     public void imprimeInformacoesHospede(Hospede hospede, String metodo) {
         switch (metodo) {
             case "reserva" -> {
-                System.out.println("Olá " + hospede.getPessoa().getNome() + ", sua reserva foi efetuada!");
-                System.out.println("A reserva é para o dia: " + hospede.getDataDaReserva());
-                System.out.println("Este é o número do seu quarto: " + hospede.getNumeroDoQuarto());
+                System.out.println("Olá " + hospede.getNome() + ", sua reserva foi efetuada!");
+                System.out.println("A reserva é para o dia: " + hospede.getDataDeNascimento());
+                System.out.println("Este é o número do seu quarto: " + hospede.getNome());
             }
             case "checkin" -> {
-                System.out.println("Olá " + hospede.getPessoa().getNome() + ", foi realizado o seu check-in no quarto " + hospede.getNumeroDoQuarto() + ", Seja bem vindo!");
+                System.out.println("Olá " + hospede.getNome() + ", foi realizado o seu check-in no quarto " + hospede.numeroDoQuarto + ", Seja bem vindo!");
             }
             case "checkout" -> {
-                System.out.println("Olá " + hospede.getPessoa().getNome() + ", seu check-out foi realizado com sucesso!");
+                System.out.println("Olá " + hospede.getNome() + ", seu check-out foi realizado com sucesso!");
                 System.out.println("Check-out realizado no dia: " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
             }
@@ -97,18 +92,18 @@ public class Hospede extends Pessoa {
     }
 
 
-    public void criarReserva(Hospede hospede, Quarto quartoAReservar, String dataDaReserva) throws Exception {
+    public void criarReserva(Hospede hospede, Quarto quartoAReservar, LocalDate dataDaReserva) throws Exception {
         if (quartoAReservar.getReservado()) {
             throw new Exception("Este quarto já está reservado!");
         }
 
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        format.setLenient(false);
-        try {
-            format.parse(dataDaReserva);
-        } catch (ParseException e) {
-            throw new Exception("A data da reserva está inválida!");
-        }
+//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//        format.setLenient(false);
+//        try {
+//            format.parse(dataDaReserva);
+//        } catch (ParseException e) {
+//            throw new Exception("A data da reserva está inválida!");
+//        }
 
         quartoAReservar.setReservado(true);
         this.numeroDoQuarto = quartoAReservar.getNumeroQuarto();
@@ -143,7 +138,7 @@ public class Hospede extends Pessoa {
         quartoAReservar.setCheckin(false);
         quartoAReservar.setHospede(null);
         hospede.setNumeroDoQuarto("");
-        hospede.setDataDaReserva("");
+        hospede.setDataDaReserva(null);
         hospede.setPossuiReserva(false);
         imprimeInformacoesHospede(hospede, "checkout");
     }

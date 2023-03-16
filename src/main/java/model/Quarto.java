@@ -96,7 +96,7 @@ public class Quarto {
 
     public void setNomeHospede(Hospede hospede) {
         if (this.reservado) {
-            this.nomeHospede = hospede.getPessoa().getNome();
+            this.nomeHospede = hospede.getNome();
         }
     }
     public void resetNomeHospede(Quarto quarto) {
